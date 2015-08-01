@@ -15,7 +15,7 @@
   <% end %>
   </div>
   <div class="field">
-
+<h1>Memoir</h1>
   <!-- Age -->
   <div class="field">
     <%= f.label :age %><br>
@@ -35,6 +35,7 @@
   </div>
   <div class="field">
     <%= f.label :detailLevel_id %><br>
+    <input type="range" name="points" min="0" max="2">
     <% if @group.detailLevel != nil %>
       <%= f.select :detailLevel_id, options_from_collection_for_select(DetailLevel.all, :id, :name, @group.detailLevel.id), :include_blank => true %>
     <% else %>

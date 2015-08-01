@@ -39,6 +39,14 @@
         </div>
           
           <div class="group_attributes">
+           <!-- Storyline Tags -->
+             <% if @storylines.where(:group_id => group.id).count>0 %>
+              
+                  <% @storylines.where(:group_id => group.id).each do |storyline| %>
+                    <span class='storytag'><%= @storylineTags.find(storyline.storylineTag_id).name %></span>
+                  <% end %>
+              
+            <% end %>  
           <details>
           <summary>Group Details</summary>
           <ul>

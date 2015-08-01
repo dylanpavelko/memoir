@@ -28,9 +28,9 @@
   <div>
     <%= fo.label :contentType_id %><br>
     <% if @content_block.contentType != nil %>
-      <%= fo.select :contentType_id, options_from_collection_for_select(ContentType.all, :id, :name, @content_block.contentType.id), :include_blank => true %>
+      <%= fo.select :contentType_id, options_from_collection_for_select(ContentType.all, :id, :name, @content_block.contentType.id) %>
     <% else %>
-      <%= fo.select :contentType_id, options_from_collection_for_select(ContentType.all, :id, :name), :include_blank => true %>
+      <%= fo.select :contentType_id, options_from_collection_for_select(ContentType.all, :id, :name) %>
     <% end %>    
   </div>
 
