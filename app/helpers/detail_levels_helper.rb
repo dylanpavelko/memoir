@@ -1,0 +1,2 @@
+module DetailLevelsHelper
+end

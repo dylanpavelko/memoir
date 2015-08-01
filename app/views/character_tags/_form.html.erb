@@ -1,0 +1,37 @@
+<%= form_for(@character_tag) do |f| %>
+  <% if @character_tag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@character_tag.errors.count, "error") %> prohibited this character_tag from being saved:</h2>
+
+      <ul>
+      <% @character_tag.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :relationship %><br>
+    <%= f.text_field :relationship %>
+  </div>
+  <div class="field">
+    <%= f.label :relationshipType_id %><br>
+    <% if @character_tag.relationshipType != nil %>
+      <%= f.select :relationshipType_id, options_from_collection_for_select(RelationshipType.all, :id, :category, @character_tag.relationshipType.id), :include_blank => true %>
+    <% else %>
+      <%= f.select :relationshipType_id, options_from_collection_for_select(RelationshipType.all, :id, :category), :include_blank => true %>
+    <% end %>  
+  </div>
+  <div class="field">
+    <%= f.label :nickname %><br>
+    <%= f.text_field :nickname %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

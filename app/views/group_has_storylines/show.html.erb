@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @group_has_storyline.group_id %>
+</p>
+
+<p>
+  <strong>Storylinetag:</strong>
+  <%= @group_has_storyline.storylineTag_id %>
+</p>
+
+<%= link_to 'Edit', edit_group_has_storyline_path(@group_has_storyline) %> |
+<%= link_to 'Back', group_has_storylines_path %>

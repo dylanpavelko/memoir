@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Contenttype:</strong>
+  <%= @content_block.contentType.name %>
+</p>
+
+<p>
+  <strong>Style:</strong>
+  <% if @content_block.style != nil %>
+  	<%= @content_block.style.name %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+
+  <% if @content_block.contentType.name == "Image" %>
+  		<img src=<%= @content_block.content %> >
+  <% else %>
+  	<%= @content_block.content %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_content_block_path(@content_block) %> |
+<%= link_to 'Back', content_blocks_path %>
+<%= link_to 'Groups', groups_path %>

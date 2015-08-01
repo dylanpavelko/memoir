@@ -1,0 +1,21 @@
+<%= form_for(@storyline_tag) do |f| %>
+  <% if @storyline_tag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@storyline_tag.errors.count, "error") %> prohibited this storyline_tag from being saved:</h2>
+
+      <ul>
+      <% @storyline_tag.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

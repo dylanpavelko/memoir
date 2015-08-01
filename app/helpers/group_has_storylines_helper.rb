@@ -1,0 +1,2 @@
+module GroupHasStorylinesHelper
+end

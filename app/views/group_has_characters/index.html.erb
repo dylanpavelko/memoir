@@ -1,0 +1,27 @@
+<h1>Listing group_has_characters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>Charactertag</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @group_has_characters.each do |group_has_character| %>
+      <tr>
+        <td><%= group_has_character.group_id %></td>
+        <td><%= group_has_character.characterTag_id %></td>
+        <td><%= link_to 'Show', group_has_character %></td>
+        <td><%= link_to 'Edit', edit_group_has_character_path(group_has_character) %></td>
+        <td><%= link_to 'Destroy', group_has_character, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Group has character', new_group_has_character_path %>

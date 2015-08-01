@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Chunk:</strong>
+  <%= @contentBlock.content %>
+</p>
+
+<p>
+  <strong>Parent Group:</strong>
+      <% if @group.parentGroup_id != nil %>
+     <%= @group.parentGroup_id %>
+    <% else %>
+    <% end %> 
+</p>
+
+<p>
+  <strong>Storyline Tag:</strong>
+    <% @storylines.each do |storyline| %>
+      <%= @storylineTags.find(storyline.storylineTag_id).name %>
+    <% end %>
+
+</p>
+
+<p>
+  <strong>Character Tag:</strong>
+    <% @characters.each do |character| %>
+      <%= @characterTags.find(character.characterTag_id).name %>
+    <% end %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @group.age %>
+</p>
+
+<p>
+  <strong>Era:</strong>
+    <% if @group.era != nil %>
+     <%= @group.era.name %>
+    <% else %>
+    <% end %> 
+</p>
+
+<p>
+  <strong>Content Date:</strong>
+  <%= @group.contentDate %>
+</p>
+
+<p>
+  <strong>Detail Level:</strong>
+  <% if @group.detailLevel != nil %>
+     <%= @group.detailLevel.name %>
+    <% else %>
+    <% end %>  
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @group.order %>
+</p>
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %> | 
+<%= link_to 'View Memoir', pages_view_path %>

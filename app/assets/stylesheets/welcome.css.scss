@@ -1,0 +1,61 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+div {
+	padding:1px;
+}
+
+.group {
+    background-color:#F9F9F9;
+    display: inline-block;
+    width: 90%;
+    margin-right:2em;
+    margin-left:1em
+}
+
+.group_content{
+	margin-left:2em;
+	width: 65%;
+	float: left;
+}
+
+.group_content_title{
+	margin-left:1em;
+	width: 65%;
+	float: left;
+}
+
+.group_content_image{
+	margin-left:2em;
+	background-color:#EEE;
+	width: 65%;
+	float: left
+}
+
+.group_attributes{
+	width: 30%;
+	float: right
+}
+
+ summary::-webkit-details-marker {
+ color: #000;
+ font-size: 125%;
+ margin-right: 2px;
+}
+
+summary:focus {
+	outline-style: none;
+}
+
+img{
+	max-width: 100%; height: auto;
+}
+
+p{
+	font-family: 'EB Garamond', serif;
+}
+
+h3{
+	font-family: 'EB Garamond', serif;
+}

@@ -1,0 +1,48 @@
+
+
+
+
+<%= form_for(@content_block) do |fo| %>
+  <% if @content_block.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@content_block.errors.count, "error") %> prohibited this content_block from being saved:</h2>
+
+      <ul>
+      <% @content_block.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= fo.label :contentType_id %><br>
+    <% if @content_block.contentType != nil %>
+      <%= fo.select :contentType_id, options_from_collection_for_select(ContentType.all, :id, :name, @content_block.contentType.id), :include_blank => true %>
+    <% else %>
+      <%= fo.select :contentType_id, options_from_collection_for_select(ContentType.all, :id, :name), :include_blank => true %>
+    <% end %>    
+  </div>
+
+   <div class="field">
+    <%= fo.label :style_id %><br>  
+    <% if @content_block.style != nil %>
+      <%= fo.select :style_id, options_from_collection_for_select(Style.all, :id, :name, @content_block.style.id), :include_blank => true %>
+    <% else %>
+      <%= fo.select :style_id, options_from_collection_for_select(Style.all, :id, :name), :include_blank => true %>
+    <% end %>  
+  </div>
+    
+  <div class="field">
+    <%= fo.label :content %><br>
+    <%= fo.text_area :content %>
+  </div>
+
+
+
+
+
+  <div class="actions">
+    <%= fo.submit %>
+  </div>
+  <% end %>

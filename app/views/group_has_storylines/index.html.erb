@@ -1,0 +1,27 @@
+<h1>Listing group_has_storylines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>Storylinetag</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @group_has_storylines.each do |group_has_storyline| %>
+      <tr>
+        <td><%= group_has_storyline.group_id %></td>
+        <td><%= group_has_storyline.storylineTag_id %></td>
+        <td><%= link_to 'Show', group_has_storyline %></td>
+        <td><%= link_to 'Edit', edit_group_has_storyline_path(group_has_storyline) %></td>
+        <td><%= link_to 'Destroy', group_has_storyline, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Group has storyline', new_group_has_storyline_path %>

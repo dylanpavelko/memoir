@@ -1,0 +1,104 @@
+<%= form_for(@group) do |f| %>
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% @group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<%= fields_for(@content_block) do |fo| %>
+  <% if @content_block.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@content_block.errors.count, "error") %> prohibited this content_block from being saved:</h2>
+
+      <ul>
+      <% @content_block.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= fo.label :contentType_id %><br>
+    <% if @content_block.contentType != nil %>
+      <%= fo.select :contentType_id, options_from_collection_for_select(ContentType.all, :id, :name, @content_block.contentType.id), :include_blank => true %>
+    <% else %>
+      <%= fo.select :contentType_id, options_from_collection_for_select(ContentType.all, :id, :name), :include_blank => true %>
+    <% end %>    
+  </div>
+
+   <div class="field">
+    <%= fo.label :style_id %><br>  
+    <% if @content_block.style != nil %>
+      <%= fo.select :style_id, options_from_collection_for_select(Style.all, :id, :name, @content_block.style.id), :include_blank => true %>
+    <% else %>
+      <%= fo.select :style_id, options_from_collection_for_select(Style.all, :id, :name), :include_blank => true %>
+    <% end %>  
+  </div>
+    
+  <div class="field">
+    <%= fo.label :content %><br>
+    <%= fo.text_area :content, :rows => 5, :cols => 150 %>
+  </div>
+<% end %>
+
+
+  </div>
+  <div class="field">
+    <%= f.label :parentGroup_id %><br>
+    <% if @group.parentGroup_id != nil %>
+      <%= f.select :parentGroup_id, options_from_collection_for_select(Group.all, :id, :id, @group.parentGroup_id), :include_blank => true %>
+    <% else %>
+      <%= f.select :parentGroup_id, options_from_collection_for_select(Group.all, :id, :id), :include_blank => true %>
+    <% end %>  
+  </div>
+  <div class="field">
+    <%= f.label :storylineTag_id %><br>
+     <%= collection_check_boxes(:storylineTags, :id, StorylineTag.all, :id, :name, {checked: @groupAlreadyHasStorylines}, {:multiple => true}) %>
+  </div>
+  <!-- Character Tags -->
+  <div class="field">
+    <%= f.label :characterTags %><br>
+    <%= collection_check_boxes(:characterTags, :id, CharacterTag.all, :id, :name, {checked: @groupAlreadyHasCharacters}, {:multiple => true}) %>
+  </div>
+
+  <!-- Age -->
+  <div class="field">
+    <%= f.label :age %><br>
+    <%= f.number_field :age %>
+  </div>
+  <div class="field">
+    <%= f.label :era_id %><br>
+    <% if @group.era != nil %>
+      <%= f.select :era_id, options_from_collection_for_select(Era.all, :id, :name, @group.era.id), :include_blank => true %>
+    <% else %>
+      <%= f.select :era_id, options_from_collection_for_select(Era.all, :id, :name), :include_blank => true %>
+    <% end %>  
+  </div>
+  <div class="field">
+    <%= f.label :contentDate %><br>
+    <%= f.date_select :contentDate, {:include_blank => true, :default => nil, :start_year=>1900, :end_year=>2030} %>
+  </div>
+  <div class="field">
+    <%= f.label :detailLevel_id %><br>
+    <% if @group.detailLevel != nil %>
+      <%= f.select :detailLevel_id, options_from_collection_for_select(DetailLevel.all, :id, :name, @group.detailLevel.id), :include_blank => true %>
+    <% else %>
+      <%= f.select :detailLevel_id, options_from_collection_for_select(DetailLevel.all, :id, :name), :include_blank => true %>
+    <% end %>  
+  </div>
+  <div class="field">
+    <%= f.label :order %><br>
+    <%= f.number_field :order %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

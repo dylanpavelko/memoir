@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @character_tag.name %>
+</p>
+
+<p>
+  <strong>Relationship:</strong>
+  <%= @character_tag.relationship %>
+</p>
+
+<p>
+  <strong>Relationshiptype:</strong>
+  <% if @character_tag.relationshipType != nil %>
+  <%= @character_tag.relationshipType.category %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Nickname:</strong>
+  <%= @character_tag.nickname %>
+</p>
+
+<%= link_to 'Edit', edit_character_tag_path(@character_tag) %> |
+<%= link_to 'Back', character_tags_path %>

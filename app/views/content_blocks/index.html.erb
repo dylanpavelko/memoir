@@ -1,0 +1,36 @@
+<h1>Listing content_blocks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Contenttype</th>
+      <th>Style</th>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @content_blocks.each do |content_block| %>
+      <tr>
+        <td><% if content_block.contentType != nil %><%= content_block.contentType.name %><% end %></td>
+        <td><% if content_block.style != nil %>
+    <%= content_block.style.name %>
+  <% end %></td>
+        <td> <% if content_block.contentType != nil %><% if content_block.contentType.name == "Image" %>
+      <img src=<%= content_block.content %> >
+  <% else %>
+    <%= content_block.content %>
+  <% end %><%end%></td>
+        <td><%= link_to 'Show', content_block %></td>
+        <td><%= link_to 'Edit', edit_content_block_path(content_block) %></td>
+        <td><%= link_to 'Destroy', content_block, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Content block', new_content_block_path %>
+<%= link_to 'Groups', groups_path %>

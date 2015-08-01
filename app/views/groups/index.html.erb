@@ -1,0 +1,106 @@
+<h1>Listing groups</h1>
+
+<table border='1'>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Content</th>
+      <th>Group Details</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+        <td><%= group.id %></td>
+        <td>
+          <%if group.chunk_id != nil %>
+            <% if @contentBlocks.find(group.chunk_id).contentType.name == "Image" %>
+               <img src=<%= @contentBlocks.find(group.chunk_id).content %> >
+            <% else %>
+                <%= @contentBlocks.find(group.chunk_id).content %>
+            <% end %>
+            <br/>
+            <%= link_to 'Edit', edit_content_block_path(@contentBlocks.find(group.chunk_id)) %>
+          <% end %>
+        </td>
+        <td>
+          <!-- Group Data -->
+          <table border='0'>
+            <!-- Parent Group ID -->
+            <% if group.parentGroup_id != nil %>
+            <tr><td>Parent Group</td>
+              <td>      
+                  <%= group.parentGroup_id %>
+              </td>
+            </tr>
+            <% end %> 
+
+            <!-- Storyline Tags -->
+             <% if @storylines.where(:group_id => group.id).count>0 %>
+            <tr><td>Storyline Tags</td>
+              <td>
+                <% @storylines.where(:group_id => group.id).each do |storyline| %>
+                <%= @storylineTags.find(storyline.storylineTag_id).name %>
+                <% end %>
+              </td></tr>
+            <% end %>
+
+            <!-- Character Tags -->
+            <% if @characters.where(:group_id => group.id).count>0 %>
+            <tr><td>Character Tags</td>
+              <td>
+                <% @characters.where(:group_id => group.id).each do |character| %>
+                <%= @characterTags.find(character.characterTag_id).name %>
+                <% end %>
+            </td></tr>
+            <% end %>
+
+            <!-- Age -->
+            <% if group.age != nil %>
+            <tr><td>Age</td><td><%= group.age %></td></tr>
+           <% end %>
+
+            <!-- Era -->
+            <% if group.era != nil %>
+            <tr>
+              <td>Era</td>
+              <td>
+                <%= group.era.name %>
+              
+              </td>
+            </tr>
+            <% end %>
+
+            <!-- Content Date -->
+            <% if group.contentDate != nil %>
+            <tr><td>Date</td><td><%= group.contentDate %></td></tr>
+            <% end %>
+            <!-- Detail Level -->
+           <tr><td>Detail Level</td><td><%if group.detailLevel != nil %><%= group.detailLevel.name %><% end %></td></tr>
+           <tr><td>Order</td><td><%= group.order %></td></tr>
+           <tr><td></td><td><%= link_to 'Show', group %> <%= link_to 'Edit', edit_group_path(group) %> <%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td></tr>
+     </table>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Group', new_group_path %><br/><br/>
+
+<%= link_to 'Content Block', content_blocks_path %>
+<br/>
+<%= link_to 'Groups', groups_path %> 
+<%= link_to 'Character Tags', character_tags_path %>
+<%= link_to 'Storyline Tags', storyline_tags_path %>
+<%= link_to 'Eras', eras_path %>
+<br/>
+<%= link_to 'Relationship Types', relationship_types_path %>
+<%= link_to 'Detail Level', detail_levels_path %>
+<%= link_to 'Styles', styles_path %>
+<%= link_to 'Content Types', content_types_path %>
+
+

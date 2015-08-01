@@ -1,0 +1,25 @@
+<h1>Listing detail_levels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @detail_levels.each do |detail_level| %>
+      <tr>
+        <td><%= detail_level.name %></td>
+        <td><%= link_to 'Show', detail_level %></td>
+        <td><%= link_to 'Edit', edit_detail_level_path(detail_level) %></td>
+        <td><%= link_to 'Destroy', detail_level, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Detail level', new_detail_level_path %>

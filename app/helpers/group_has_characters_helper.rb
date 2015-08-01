@@ -1,0 +1,2 @@
+module GroupHasCharactersHelper
+end

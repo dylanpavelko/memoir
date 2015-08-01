@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  chunk_id: 
+  parentGroup_id: 
+  storylineTag_id: 
+  characterTag_id: 
+  age: 1
+  era_id: 
+  contentDate: 2015-07-18
+  detailLevel_id: 
+  order: 1
+
+two:
+  chunk_id: 
+  parentGroup_id: 
+  storylineTag_id: 
+  characterTag_id: 
+  age: 1
+  era_id: 
+  contentDate: 2015-07-18
+  detailLevel_id: 
+  order: 1

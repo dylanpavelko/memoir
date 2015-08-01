@@ -1,0 +1,61 @@
+<head>
+<link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+</head>
+<%= form_for(@group) do |f| %>
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% @group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  </div>
+  <div class="field">
+
+  <!-- Age -->
+  <div class="field">
+    <%= f.label :age %><br>
+    <%= f.number_field :age %>
+  </div>
+  <div class="field">
+    <%= f.label :era_id %><br>
+    <% if @group.era != nil %>
+      <%= f.select :era_id, options_from_collection_for_select(Era.all, :id, :name, @group.era.id), :include_blank => true %>
+    <% else %>
+      <%= f.select :era_id, options_from_collection_for_select(Era.all, :id, :name), :include_blank => true %>
+    <% end %>  
+  </div>
+  <div class="field">
+    <%= f.label :contentDate %><br>
+    <%= f.date_select :contentDate, {:include_blank => true, :default => nil, :start_year=>1900, :end_year=>2030} %>
+  </div>
+  <div class="field">
+    <%= f.label :detailLevel_id %><br>
+    <% if @group.detailLevel != nil %>
+      <%= f.select :detailLevel_id, options_from_collection_for_select(DetailLevel.all, :id, :name, @group.detailLevel.id), :include_blank => true %>
+    <% else %>
+      <%= f.select :detailLevel_id, options_from_collection_for_select(DetailLevel.all, :id, :name), :include_blank => true %>
+    <% end %>  
+  </div>
+
+
+  <div class="field">
+    <%= f.label :storylineTag_id %><br>
+     <%= collection_check_boxes(:storylineTags, :ids, StorylineTag.all, :id, :name, {}, {:multiple => true}) %>
+  </div>
+  <!-- Character Tags -->
+  <div class="field">
+    <%= f.label :characterTags %><br>
+    <%= collection_check_boxes(:characterTags, :ids, CharacterTag.all, :id, :name, {}, {:multiple => true}) %>
+  </div>
+
+
+  <div class="actions">
+    <%= link_to 'View Memoir', pages_view_path %>
+    <%= f.submit %>
+  </div>
+  <% end %>

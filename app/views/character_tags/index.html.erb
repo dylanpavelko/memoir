@@ -1,0 +1,34 @@
+<h1>Listing character_tags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Relationship</th>
+      <th>Relationshiptype</th>
+      <th>Nickname</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @character_tags.each do |character_tag| %>
+      <tr>
+        <td><%= character_tag.name %></td>
+        <td><%= character_tag.relationship %></td>
+        <td>  <% if character_tag.relationshipType != nil %>
+  <%= character_tag.relationshipType.category %>
+  <% end %></td>
+        <td><%= character_tag.nickname %></td>
+        <td><%= link_to 'Show', character_tag %></td>
+        <td><%= link_to 'Edit', edit_character_tag_path(character_tag) %></td>
+        <td><%= link_to 'Destroy', character_tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Character tag', new_character_tag_path %>
+<%= link_to 'Groups', groups_path %>

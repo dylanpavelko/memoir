@@ -1,0 +1,2 @@
+class Title < Chunk
+end

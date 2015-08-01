@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @group_has_character.group_id %>
+</p>
+
+<p>
+  <strong>Charactertag:</strong>
+  <%= @group_has_character.characterTag_id %>
+</p>
+
+<%= link_to 'Edit', edit_group_has_character_path(@group_has_character) %> |
+<%= link_to 'Back', group_has_characters_path %>

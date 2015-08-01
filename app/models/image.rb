@@ -1,0 +1,2 @@
+class Image < Chunk
+end
