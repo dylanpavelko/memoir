@@ -1,9 +1,10 @@
+<br/>
 
-
-<div>
-<h1>Memoir</h1>
+<div class='box0'>
 </div>
-
+<div class='box'>
+</div>
+<div class='content-container'>
     <% @groups.each do |group| %>
       <div class="group">
       	<% if @contentBlocks.find(group.chunk_id).contentType.name == "Image" %>
@@ -40,7 +41,9 @@
                       <span><%= @characterTags.find(character.characterTag_id).name %></span>
                       <%end%>
                     <% end %>
-                  
+                    <% if @storylines.where(:group_id => group.id).count>0 %>
+                      <br/>
+                    <% end %>
             <% end %>
 
              <!-- Storyline Tags -->
@@ -52,25 +55,11 @@
                
             <% end %> 
 
-     	<%= link_to '/', edit_group_path(group) %> 
-      <%= link_to 'view', group_path(group) %>
+     	<%= link_to image_tag('http://stlnet.org/images/edit.gif'), edit_group_path(group) %> 
      	</div>
      </div>
      <div>
      </div>
     <% end %>
 
-
-<br>
-
-<%= link_to 'Groups', groups_path %> 
-| <%= link_to 'Content Blocks', content_blocks_path %>
-<%= link_to 'Character Tags', character_tags_path %>
-<%= link_to 'Storyline Tags', storyline_tags_path %>
-<%= link_to 'Eras', eras_path %>
-| <%= link_to 'Relationship Types', relationship_types_path %>
-<%= link_to 'Detail Level', detail_levels_path %>
-<%= link_to 'Styles', styles_path %>
-<%= link_to 'Content Types', content_types_path %>
-
-
+</div>
