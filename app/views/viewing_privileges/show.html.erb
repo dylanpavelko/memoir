@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @viewing_privilege.name %>
+</p>
+
+<p>
+  <strong>Charactertag:</strong>
+  <%= @viewing_privilege.characterTag_id %>
+</p>
+
+<p>
+  <strong>Storylinetag:</strong>
+  <%= @viewing_privilege.storylineTag_id %>
+</p>
+
+<p>
+  <strong>Startdate:</strong>
+  <%= @viewing_privilege.startDate %>
+</p>
+
+<p>
+  <strong>Enddate:</strong>
+  <%= @viewing_privilege.endDate %>
+</p>
+
+<%= link_to 'Edit', edit_viewing_privilege_path(@viewing_privilege) %> |
+<%= link_to 'Back', viewing_privileges_path %>

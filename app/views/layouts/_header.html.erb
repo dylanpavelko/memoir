@@ -1,6 +1,8 @@
-<div id='header-fixed'>
+<% if @current_user != nil %>
+	<div id='header-fixed'>
 	<strong>Autobiography of Dylan Pavelko</strong>
 <%= link_to 'Home', root_path %> 
+<% if @current_user.role_id == 1 %>
 | <%= link_to 'Groups', groups_path %> 
 <%= link_to 'Content Blocks', content_blocks_path %>
 <%= link_to 'Character Tags', character_tags_path %>
@@ -11,8 +13,10 @@
 <%= link_to 'Styles', styles_path %>
 <%= link_to 'Content Types', content_types_path %> |
 <%= link_to 'Add New Content', new_group_path %>
+<% end %>
 <span id='profile'>
 <%=@current_user.username%>   
 <%= link_to 'Log Out', logout_path %>
 </span>
 </div>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150802032044) do
+ActiveRecord::Schema.define(version: 20150802200411) do
 
   create_table "character_tags", force: true do |t|
     t.string   "name"
@@ -111,6 +111,12 @@ ActiveRecord::Schema.define(version: 20150802032044) do
     t.datetime "updated_at"
   end
 
+  create_table "roles", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "storyline_tags", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -140,6 +146,21 @@ ActiveRecord::Schema.define(version: 20150802032044) do
     t.string   "email"
     t.string   "encrypted_password"
     t.string   "salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "firstName"
+    t.string   "lastName"
+    t.integer  "role_id"
+  end
+
+  add_index "users", ["role_id"], name: "index_users_on_role_id"
+
+  create_table "viewing_privileges", force: true do |t|
+    t.string   "name"
+    t.integer  "characterTag_id"
+    t.integer  "storylineTag_id"
+    t.date     "startDate"
+    t.date     "endDate"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

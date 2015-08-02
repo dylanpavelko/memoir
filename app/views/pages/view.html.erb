@@ -18,9 +18,9 @@
             <% if @contentBlocks.find(group.chunk_id).contentType.name == "Image" %>
                <img src=<%= @contentBlocks.find(group.chunk_id).content %> />
             <% elsif @contentBlocks.find(group.chunk_id).contentType.name == "Title" %>
-              <h3>
+              <h2>
                 <%= @contentBlocks.find(group.chunk_id).content %>
-              </h3>
+              </h2>
             <% else %>
               <p>
                 <%= simple_format(@contentBlocks.find(group.chunk_id).content) %>

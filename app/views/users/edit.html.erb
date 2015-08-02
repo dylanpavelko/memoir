@@ -1,0 +1,22 @@
+<% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
+    <% @page_title = "UserAuth | Edit User" %>
+<div class="Sign_Form">
+  <h1>Sign Up</h1>
+  <%= form_for(:user, :url => {:controller => 'users', :action => 'update'}, :method => :put) do |f| %>
+    <p> Username:</br> <%= f.text_field :username%> </p>
+    <p> Email:</br> <%= f.text_field :email%> </p>
+    <p> First Name:</br> <%= f.text_field :firstName%> </p>
+    <p> Last Name:</br> <%= f.text_field :lastName%> </p>
+    <p> Role:</br><%= collection_select(:role_id, :id, Role.all, :id, :name ) %></p>
+    <%= f.submit :Submit %>
+  <% end %>
+  <% if @user.errors.any? %>
+    <ul class="Signup_Errors">
+    <% for message_error in @user.errors.full_messages %>
+      <li>* <%= message_error %></li>
+    <% end %>
+    </ul>
+  <% end %>
+</div>

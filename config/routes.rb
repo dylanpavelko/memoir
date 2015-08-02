@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :roles
+
+  resources :viewing_privileges
+
   get 'sessions/login'
   post 'sessions/login'
   get 'sessions/home'
@@ -37,6 +41,7 @@ Rails.application.routes.draw do
 
   resources :character_tags
 
+  resources :users
   #get 'welcome/index'
 
   resources :relationship_types
@@ -47,7 +52,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   #root 'welcome#index'
 
-get "logout" => "sessions#logout"
+  get "logout" => "sessions#logout"
 
   post ':controller(/:action(/:id))(.:format)'
 

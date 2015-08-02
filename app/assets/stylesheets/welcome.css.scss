@@ -13,35 +13,28 @@ div {
 
 .group_content{
 	margin-left:2em;
-	width: 70%;
+	width: 68%;
 	float: right;
 	margin-right:4em;
 }
 
 .group_content_title{
 	margin-left:1em;
-	width: 70%;
+	width: 68%;
 	float: right;
 	margin-right:4em;
 }
 
 .group_content_image{
 	margin-left:2em;
-	width: 70%;
+	width: 68%;
 	float: right;
 	margin-right:4em;
 }
 
 .group_attributes{
 	position: relative;
-	width: 20%;
 	float: left;
-}
-
- summary::-webkit-details-marker {
- color: #000;
- font-size: 125%;
- margin-right: 2px;
 }
 
 summary:focus {
@@ -54,15 +47,16 @@ img{
 
 p{
 	font-family: 'EB Garamond', serif;
+	font-size: 125%;
 }
 
-h3{
+h2{
 	font-family: 'EB Garamond', serif;
 }
 
 .storytag{
 	text-transform: lowercase;
-	font-size: 75%;
+	font-size: 100%;
 	color: grey;
 	border: 1px solid grey;
 	border-radius: 5px;
@@ -92,8 +86,8 @@ span#profile{
 .content-container
 {
 	position: fixed;
-	left:18%;
-	width: 62.5%;
+	left:16%;
+	width: 64.5%;
 	max-height: 89.9%;
 	overflow: auto;
 	margin-right:2em;
