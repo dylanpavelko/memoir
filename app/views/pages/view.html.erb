@@ -1,17 +1,26 @@
 <head>
 <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
 </head>
+
+<div id='header-fixed'>
 <%= link_to 'Home', root_path %> 
-<%= link_to 'Groups', groups_path %> 
-|<%= link_to 'Content Blocks', content_blocks_path %>
+| <%= link_to 'Groups', groups_path %> 
+<%= link_to 'Content Blocks', content_blocks_path %>
 <%= link_to 'Character Tags', character_tags_path %>
 <%= link_to 'Storyline Tags', storyline_tags_path %>
 <%= link_to 'Eras', eras_path %>
 | <%= link_to 'Relationship Types', relationship_types_path %>
 <%= link_to 'Detail Level', detail_levels_path %>
 <%= link_to 'Styles', styles_path %>
-<%= link_to 'Content Types', content_types_path %>
+<%= link_to 'Content Types', content_types_path %> |
+<%= link_to 'Add New Content', new_group_path %>
+<%=@current_user.username%>   
+<%= link_to 'Log Out', logout_path %>
+</div>
+
+<div>
 <h1>Memoir</h1>
+</div>
 
     <% @groups.each do |group| %>
       <div class="group">
@@ -39,72 +48,29 @@
         </div>
           
           <div class="group_attributes">
-           <!-- Storyline Tags -->
+          <!-- Character Tags -->
+            <% if @characters.where(:group_id => group.id).count>0 %>
+            
+                    <% @characters.where(:group_id => group.id).each do |character| %>
+                    <% if @characterTags.find(character.characterTag_id).image_url != nil %>
+                      <span><img class='characterIcon' src=<%= @characterTags.find(character.characterTag_id).image_url %> /></span>
+                      <%else%>
+                      <span><%= @characterTags.find(character.characterTag_id).name %></span>
+                      <%end%>
+                    <% end %>
+                  
+            <% end %>
+
+             <!-- Storyline Tags -->
              <% if @storylines.where(:group_id => group.id).count>0 %>
               
                   <% @storylines.where(:group_id => group.id).each do |storyline| %>
                     <span class='storytag'><%= @storylineTags.find(storyline.storylineTag_id).name %></span>
                   <% end %>
-              
-            <% end %>  
-          <details>
-          <summary>Group Details</summary>
-          <ul>
-            <!-- Parent Group ID -->
-            <% if group.parentGroup_id != nil %>
-           		<li>Parent Group: <%= group.parentGroup_id %><li>
+               
             <% end %> 
 
-            <!-- Storyline Tags -->
-             <% if @storylines.where(:group_id => group.id).count>0 %>
-            	<li>Storyline Tags:
-                	<% @storylines.where(:group_id => group.id).each do |storyline| %>
-                		<%= @storylineTags.find(storyline.storylineTag_id).name %>
-                	<% end %>
-            	</li>
-            <% end %>
-
-            <!-- Character Tags -->
-            <% if @characters.where(:group_id => group.id).count>0 %>
-            	<li>Character Tags:
-	                <ul>
-	                	<% @characters.where(:group_id => group.id).each do |character| %>
-    		            	<li><%= @characterTags.find(character.characterTag_id).name %></li>
-            	    	<% end %>
-            	    </ul>
-           		</li>
-            <% end %>
-
-            <!-- Age -->
-            <% if group.age != nil %>
-            	<li>Age: <%= group.age %></li>
-           <% end %>
-
-            <!-- Era -->
-            <% if group.era != nil %>
-	            <li>Era: <%= group.era.name %></li>
-            <% end %>
-
-            <!-- Content Date -->
-            <% if group.contentDate != nil %>
-            <li>Date: <%= group.contentDate %></li>
-            <% end %>
-
-            <!-- Detail Level -->
-           	<%if group.detailLevel != nil %>
-           		<li>Detail Level: <%= group.detailLevel.name %></li>
-			<% end %>
-
-			<%if group.order != nil %>
-           		<li>Order: <%= group.order %></li>
-           	<% end %>
-           	<li>getdate: <%= group.getDate %></li>
-
-     	</ul>
-     	</details>
-     	<%= link_to 'Edit', edit_group_path(group) %> <%= link_to 'Delete Group', group, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <br/>
-      <%= link_to 'Add New Content', new_group_path %>
+     	<%= link_to 'view', group_path(group) %>
      	</div>
      </div>
      <div>

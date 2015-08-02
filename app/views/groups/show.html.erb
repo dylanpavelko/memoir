@@ -59,5 +59,11 @@
   <%= @group.order %>
 </p>
 
+<p>
+  getdate: <%= @group.getDate %>
+</p> 
+
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'View Memoir', pages_view_path %>
+<br/><br/>
+<%= link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' } %>

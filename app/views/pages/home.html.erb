@@ -1,6 +1,63 @@
 <head>
-<link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+  <script>
+  $(function() {
+    $( "#slider" ).slider({
+      value:1,
+      min: 0,
+      max: 2,
+      step: 1,
+      slide: function( event, ui ) {
+        $( "#amount2" ).val( "$" + ui.value );
+      }
+    });
+    $( "#amount2" ).val( "$" + $( "#slider" ).slider( "value" ) );
+  });
+
+    $(function() {
+      $( "#slider-range" ).slider({
+        range: true,
+        min: 1984,
+        max: getCurrentYear(),
+        values: [ 1989, 2015 ],
+        slide: function( event, ui ) {
+          $( "#amount" ).val( getDate(ui.values[ 0 ]) + " to " + getDate(ui.values[ 1 ]) );
+        }
+      });
+
+      $( "#amount" ).val( getDate($( "#slider-range" ).slider( "values", 0 )) + " to " + getDate($( "#slider-range" ).slider( "values", 1 )) );
+    });
+
+    function getDate(value) {
+      if(value == 1988){
+        display = "My Parents Meeting";
+      }else if(value == 1987){
+        display = "My Parents Story";
+      }else if(value == 1986){
+        display = "My Grandparents Story";
+      }else if(value == 1985){
+        display = "My Ancestry (1800's)";
+      }else if(value == 1984){
+        display = "My Ancestry (<1800's)";
+      }else if(value == getCurrentYear()){
+        display = "Today"
+      }else{
+        display = value;
+      }
+      return display;
+    }
+
+    function getCurrentYear(){
+      return new Date().getFullYear()
+    }
+
+  </script>
 </head>
+
+
 <%= form_for(@group) do |f| %>
   <% if @group.errors.any? %>
     <div id="error_explanation">
@@ -14,38 +71,34 @@
     </div>
   <% end %>
   </div>
-  <div class="field">
+
+
 <h1>Memoir</h1>
-  <!-- Age -->
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+IMAGE COLALGE
+<br/><br/><br/><br/><br/>
+
   <div class="field">
-    <%= f.label :age %><br>
-    <%= f.number_field :age %>
+    <label for="amount">Time Frame:</label>
+    <input type="text" id="amount" size="60" readonly style="border:0; font-weight:bold;"> 
+    <div id="slider-range" style="width:80%;"></div>
+    <br/>
   </div>
   <div class="field">
-    <%= f.label :era_id %><br>
-    <% if @group.era != nil %>
-      <%= f.select :era_id, options_from_collection_for_select(Era.all, :id, :name, @group.era.id), :include_blank => true %>
-    <% else %>
-      <%= f.select :era_id, options_from_collection_for_select(Era.all, :id, :name), :include_blank => true %>
-    <% end %>  
-  </div>
-  <div class="field">
-    <%= f.label :contentDate %><br>
-    <%= f.date_select :contentDate, {:include_blank => true, :default => nil, :start_year=>1900, :end_year=>2030} %>
-  </div>
-  <div class="field">
-    <%= f.label :detailLevel_id %><br>
-    <input type="range" name="points" min="0" max="2">
-    <% if @group.detailLevel != nil %>
-      <%= f.select :detailLevel_id, options_from_collection_for_select(DetailLevel.all, :id, :name, @group.detailLevel.id), :include_blank => true %>
-    <% else %>
-      <%= f.select :detailLevel_id, options_from_collection_for_select(DetailLevel.all, :id, :name), :include_blank => true %>
-    <% end %>  
+  <label for="amount2">Detail Level:</label>
+  <input type="text" id="amount2" readonly style="border:0; font-weight:bold;">
+  <div id="slider" style="width:80%;"></div>
   </div>
 
 
   <div class="field">
-    <%= f.label :storylineTag_id %><br>
+    <%= f.label :storylineTag_id, "Storylines" %><br>
      <%= collection_check_boxes(:storylineTags, :ids, StorylineTag.all, :id, :name, {}, {:multiple => true}) %>
   </div>
   <!-- Character Tags -->

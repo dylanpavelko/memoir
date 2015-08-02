@@ -11,6 +11,13 @@
 </p>
 
 <p>
+  <strong>Image:</strong>
+  <% if @character_tag.image_url != nil %>
+  <img src=<%= @character_tag.image_url %> />
+  <% end %>
+</p>
+
+<p>
   <strong>Relationshiptype:</strong>
   <% if @character_tag.relationshipType != nil %>
   <%= @character_tag.relationshipType.category %>

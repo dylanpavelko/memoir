@@ -28,12 +28,12 @@ div {
 
 .group_content_image{
 	margin-left:2em;
-	width: 65%;
+	width: 70%;
 	float: left;
 }
 
 .group_attributes{
-	width: 30%;
+	width: 20%;
 	float: right;
 }
 
@@ -67,3 +67,17 @@ h3{
 	border-radius: 5px;
 	padding: 2px;
 }
+
+.characterIcon{
+	border-radius: 5px;
+	max-height: 25px;
+	margin-top: 2px;
+	opacity: 0.6;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
+     position: relative;
+  top: 50%;
+  transform: translateY(30%);
+}
+
+div#header-fixed {position:fixed; top:0px; margin:auto; z-index:100000; width:100%;
+	background-color: white;}

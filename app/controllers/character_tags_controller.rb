@@ -69,6 +69,6 @@ class CharacterTagsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def character_tag_params
-      params.require(:character_tag).permit(:name, :relationship, :relationshipType_id, :nickname)
+      params.require(:character_tag).permit(:name, :relationship, :relationshipType_id, :nickname, :image_url)
     end
 end

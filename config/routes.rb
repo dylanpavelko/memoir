@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'sessions/login'
+  post 'sessions/login'
+  get 'sessions/home'
+
+  get 'sessions/profile'
+
+  get 'sessions/setting'
+
+  get 'users/new'
+
   resources :group_has_storylines
 
   resources :group_has_characters
@@ -36,6 +46,13 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   #root 'welcome#index'
+
+get "logout" => "sessions#logout"
+
+  post ':controller(/:action(/:id))(.:format)'
+
+  #root :to => "sessions#login"
+
   get "/pages/view" => "pages#view"
   get "/pages/:page" => "pages#home"
   root "pages#home", page: "home"
