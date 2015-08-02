@@ -15,25 +15,27 @@ div {
 	margin-left:2em;
 	width: 70%;
 	float: right;
+	margin-right:4em;
 }
 
 .group_content_title{
 	margin-left:1em;
 	width: 70%;
 	float: right;
+	margin-right:4em;
 }
 
 .group_content_image{
 	margin-left:2em;
 	width: 70%;
 	float: right;
+	margin-right:4em;
 }
 
 .group_attributes{
 	position: relative;
 	width: 20%;
 	float: left;
-	left:-20px;
 }
 
  summary::-webkit-details-marker {
@@ -90,24 +92,24 @@ span#profile{
 .content-container
 {
 	position: fixed;
-	left:0px;
-	max-height: 69%;
+	left:18%;
+	width: 62.5%;
+	max-height: 89.9%;
 	overflow: auto;
-	max-width: 675px;
-	height:600px;
-	padding: 50px;
+	margin-right:2em;
+
+	height:898px;
 	margin: 0 auto;
 }
 
 .box0
 {
 	position: fixed;
-	max-height: 69%;
-	width: 175px;
-	height:698px;
+	max-height: 90%;
+	width: 15%;
+	height:898px;
 	margin: 0 auto;
-	padding: 50px;
-	left:0;
+	right:70%;
 	background-color: #fff;
 	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
@@ -117,13 +119,11 @@ span#profile{
 .box
 {
 	position: fixed;
-	left:175px;
-	max-height: 69%;
+	left:30%;
+	max-height: 90%;
 	overflow: auto;
-	width: 500px;
-	height:600px;
-	padding: 50px;
-	margin: 0 auto;
+	width: 50%;
+	height:898px;
 	background-color: #fff;
 	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
