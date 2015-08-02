@@ -1,5 +1,6 @@
 class DetailLevelsController < ApplicationController
   before_action :set_detail_level, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user
 
   # GET /detail_levels
   # GET /detail_levels.json

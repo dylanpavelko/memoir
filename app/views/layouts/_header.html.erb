@@ -1,0 +1,17 @@
+<div id='header-fixed'>
+<%= link_to 'Home', root_path %> 
+| <%= link_to 'Groups', groups_path %> 
+<%= link_to 'Content Blocks', content_blocks_path %>
+<%= link_to 'Character Tags', character_tags_path %>
+<%= link_to 'Storyline Tags', storyline_tags_path %>
+<%= link_to 'Eras', eras_path %>
+| <%= link_to 'Relationship Types', relationship_types_path %>
+<%= link_to 'Detail Level', detail_levels_path %>
+<%= link_to 'Styles', styles_path %>
+<%= link_to 'Content Types', content_types_path %> |
+<%= link_to 'Add New Content', new_group_path %>
+<span id='profile'>
+<%=@current_user.username%>   
+<%= link_to 'Log Out', logout_path %>
+</span>
+</div>

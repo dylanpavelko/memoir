@@ -1,5 +1,6 @@
 class ContentTypesController < ApplicationController
   before_action :set_content_type, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user
 
   # GET /content_types
   # GET /content_types.json

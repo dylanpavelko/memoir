@@ -1,5 +1,6 @@
 class GroupHasStorylinesController < ApplicationController
   before_action :set_group_has_storyline, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user
 
   # GET /group_has_storylines
   # GET /group_has_storylines.json

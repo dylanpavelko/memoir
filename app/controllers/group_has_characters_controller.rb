@@ -1,5 +1,6 @@
 class GroupHasCharactersController < ApplicationController
   before_action :set_group_has_character, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user
 
   # GET /group_has_characters
   # GET /group_has_characters.json

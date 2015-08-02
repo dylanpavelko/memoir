@@ -1,5 +1,6 @@
 class ContentBlocksController < ApplicationController
   before_action :set_content_block, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user
 
   # GET /content_blocks
   # GET /content_blocks.json
