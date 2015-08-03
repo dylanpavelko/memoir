@@ -59,6 +59,7 @@
       <%= f.select :parentGroup_id, options_from_collection_for_select(Group.all, :id, :id), :include_blank => true %>
     <% end %>  
   </div>
+  <!-- Storyline Tags -->
   <div class="field">
     <%= f.label :storylineTag_id %><br>
      <%= collection_check_boxes(:storylineTags, :id, StorylineTag.all, :id, :name, {checked: @groupAlreadyHasStorylines}, {:multiple => true}) %>

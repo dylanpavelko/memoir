@@ -25,8 +25,8 @@ class PagesController < ApplicationController
 	def view
 		@groups = Group.all
 		@groups = @groups.select { |group| group.userHasAccess(@current_user) == true }
-		 @groups = @groups.sort {|a, b| b.getOrder <=> a.getOrder}
-		 @groups = @groups.sort {|a,b| a.getDatePercision <=> b.getDatePercision}
+		@groups = @groups.sort {|a, b| b.getOrder <=> a.getOrder}
+		@groups = @groups.sort {|a,b| a.getDatePercision <=> b.getDatePercision}
 
 
 	    @contentBlocks = ContentBlock.all

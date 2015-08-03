@@ -1,11 +1,13 @@
 <% if @current_user != nil %>
-	<div id='header-fixed'>
-	<strong>Autobiography of Dylan Pavelko</strong>
+<div id='header-fixed'>
+<strong>Autobiography of Dylan Pavelko</strong>
 <%= link_to 'Home', root_path %>
 <%= link_to 'View Memoir', pages_view_path %> 
 <% if @current_user.role_id == 1 %>
 | 
-<%= link_to 'Author Tools', pages_tools_path %>  
+<%= link_to 'Author Tools', pages_tools_path %> 
+|  
+<%= link_to 'Manage Users', pages_tools_path %> 
 | 
 <%= link_to 'Add New Content', new_group_path %>
 <% end %>

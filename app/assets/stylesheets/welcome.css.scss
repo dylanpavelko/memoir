@@ -2,14 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body{
+	font-family: 'EB Garamond', serif;
+}
+
+
+ul{
+	list-style-type: none;
+}
+li{
+	font-family: 'EB Garamond', serif;
+	font-size: 145%;
+}
 
 div#background{
 	background-image: url('http://images.123hdwallpapers.com/20150601/light-cloud-background-1920x1200.jpg');
 	opacity: .3;
 	left:0;
 	top:0;
-	height:99.8%;
-	width:99.8%;
+	height:100%;
+	width:100%;
 	z-index:-1;
 	position:absolute;
 }
@@ -20,13 +32,11 @@ div#main{
 	position:absolute;
 }
 
-div {
-	padding:1px;
-}
 
 
-.group_content{
+.group_content_text{
 	margin-left:2em;
+	padding-left:5em;
 	width: 68%;
 	float: right;
 	margin-right:4em;
@@ -59,6 +69,7 @@ img{
 	max-width: 100%; height: auto;
 }
 
+
 p{
 	font-family: 'EB Garamond', serif;
 	font-size: 125%;
@@ -89,6 +100,7 @@ h2{
 }
 
 div#header-fixed {position:fixed; top:0px; margin:auto; z-index:100000; width:100%;
+	font-size: 125%;
 	}
 
 span#profile{
