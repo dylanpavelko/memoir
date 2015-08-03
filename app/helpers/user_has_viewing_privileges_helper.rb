@@ -1,0 +1,2 @@
+module UserHasViewingPrivilegesHelper
+end

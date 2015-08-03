@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_has_viewing_privilege.user.username %>
+</p>
+
+<p>
+  <strong>Viewingprivilege:</strong>
+  <%= @user_has_viewing_privilege.viewingPrivilege.name %>
+</p>
+
+<%= link_to 'Edit', edit_user_has_viewing_privilege_path(@user_has_viewing_privilege) %> |
+<%= link_to 'Back', user_has_viewing_privileges_path %>

@@ -6,6 +6,9 @@ class PagesController < ApplicationController
 		render template: "pages/#{params[:page]}"
 	end
 
+	def tools
+	end
+
 	def home
 	 @group = Group.new
 	 @groups = Group.all.sort {|a, b| b.getOrder <=> a.getOrder}
@@ -20,14 +23,16 @@ class PagesController < ApplicationController
 	end
 
 	def view
-	 @groups = Group.all.sort {|a, b| b.getOrder <=> a.getOrder}
-	 @groups = @groups.sort {|a,b| a.getDatePercision <=> b.getDatePercision}
+		@groups = Group.all
+		@groups = @groups.select { |group| group.userHasAccess(@current_user) == true }
+		 @groups = @groups.sort {|a, b| b.getOrder <=> a.getOrder}
+		 @groups = @groups.sort {|a,b| a.getDatePercision <=> b.getDatePercision}
 
 
-    @contentBlocks = ContentBlock.all
-    @characterTags = CharacterTag.all
-    @storylineTags = StorylineTag.all
-    @characters = GroupHasCharacter.all
-    @storylines = GroupHasStoryline.all
+	    @contentBlocks = ContentBlock.all
+	    @characterTags = CharacterTag.all
+	    @storylineTags = StorylineTag.all
+	    @characters = GroupHasCharacter.all
+	    @storylines = GroupHasStoryline.all
 	end
 end

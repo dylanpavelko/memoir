@@ -37,4 +37,13 @@ class User < ActiveRecord::Base
 	def match_password(login_password="")
 	  encrypted_password == BCrypt::Engine.hash_secret(login_password, salt)
 	end
+
+	def hasPrivilege(privilege)
+		if self.role_id == 1
+			return true
+		elsif UserHasViewingPrivilege.where(:user_id => self.id, :viewingPrivilege_id => privilege).count > 0
+			return true
+		end
+		return false
+	end
 end

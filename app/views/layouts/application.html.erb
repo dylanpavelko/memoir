@@ -8,9 +8,17 @@
   <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<%= render "layouts/header" %>
-<br/>
-<%=yield %>
-<%= render "layouts/footer" %>
+
+
+<div id="main">
+	<%= render "layouts/header" %>
+	<br/>
+	<%=yield %>
+	<%= render "layouts/footer" %>
+</div>
+
+<div id="background">
+</div>
+
 </body>
 </html>

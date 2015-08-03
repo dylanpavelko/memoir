@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :user_has_viewing_privileges
+
   resources :roles
 
   resources :viewing_privileges
@@ -58,6 +60,7 @@ Rails.application.routes.draw do
 
   #root :to => "sessions#login"
 
+  get "/pages/tools" => "pages#tools"
   get "/pages/view" => "pages#view"
   get "/pages/:page" => "pages#home"
   root "pages#home", page: "home"

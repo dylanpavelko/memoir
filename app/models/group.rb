@@ -76,4 +76,49 @@ class Group < ActiveRecord::Base
   		return 0
   	end
   end
+
+  def userHasAccess(current_user)
+    @viewPrivileges = ViewingPrivilege.all
+    @viewPrivileges.each do |viewing_privilege|
+      if viewing_privilege.includes(self) && !current_user.hasPrivilege(viewing_privilege)
+          return false
+      end
+    end
+    return true
+  end
+
+  def hasStoryline(storyline)
+    @storylines = GroupHasStoryline.where(:group_id => self.id)
+    @storylines.each do |group_storyline|
+        if group_storyline.storylineTag_id == storyline
+          return true
+        end
+      end
+      return false
+  end
+
+  def hasCharacter(character)
+    @characters = GroupHasCharacter.where(:group_id => self.id)
+    @characters.each do |group_character|
+        if group_character.characterTag_id == character
+          return true
+        end
+      end
+      return false
+  end
+
+  def isIncludedInDateRange(startDate, endDate)
+    if startDate == nil and endDate ==nil
+      return true
+    elsif startDate == nil and self.getDatePercision <= endDate
+      return true
+    elsif startDate <= self.getDatePercision and endDate == nil
+      return true
+    elsif startDate <= self.getDatePercision and  self.getDatePercision <= endDate
+      return true
+    else
+      return false
+    end
+  end
+
 end

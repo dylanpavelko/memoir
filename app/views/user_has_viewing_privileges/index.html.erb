@@ -1,0 +1,27 @@
+<h1>Listing user_has_viewing_privileges</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Viewingprivilege</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_has_viewing_privileges.each do |user_has_viewing_privilege| %>
+      <tr>
+        <td><%= user_has_viewing_privilege.user.username %></td>
+        <td><%= user_has_viewing_privilege.viewingPrivilege.name %></td>
+        <td><%= link_to 'Show', user_has_viewing_privilege %></td>
+        <td><%= link_to 'Edit', edit_user_has_viewing_privilege_path(user_has_viewing_privilege) %></td>
+        <td><%= link_to 'Destroy', user_has_viewing_privilege, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User has viewing privilege', new_user_has_viewing_privilege_path %>

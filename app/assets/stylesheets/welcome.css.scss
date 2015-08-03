@@ -2,8 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body{
-	background-color: #DDD
+
+div#background{
+	background-image: url('http://images.123hdwallpapers.com/20150601/light-cloud-background-1920x1200.jpg');
+	opacity: .3;
+	left:0;
+	top:0;
+	height:99.8%;
+	width:99.8%;
+	z-index:-1;
+	position:absolute;
+}
+
+div#main{
+	z-index:9999;
+	opacity:1;
+	position:absolute;
 }
 
 div {
@@ -75,7 +89,7 @@ h2{
 }
 
 div#header-fixed {position:fixed; top:0px; margin:auto; z-index:100000; width:100%;
-	background-color: white;}
+	}
 
 span#profile{
 	float: right;
