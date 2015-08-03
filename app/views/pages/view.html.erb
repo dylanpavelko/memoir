@@ -1,3 +1,7 @@
+
+<div id="locationTracker">
+
+</div>
 <br/>
  <% if @current_user.role_id ==1 %>
 <div class='box0'>
@@ -7,8 +11,16 @@
 </div>
 <div class='content-container'>
   <div class="group">
+    <div class="group_content_title" style="text-align:center;">
+      <br/><br/><br/><br/><br/>
+      <h2>The Autobiography of</h2>
+      <h1>Dylan Pavelko</h1>
+      <br/><br/>
+    </div>
+  </div>
+  <div class="group">
     <div class="group_content_title">
-      <br/><br/><br/>
+      <br/><br/>
       <h2>Table of Contents</h2>
     </div>
   </div>
@@ -19,7 +31,7 @@
         <% @groups.each do |group| %>
           <% if @contentBlocks.find(group.chunk_id).contentType.name == "Title" %>
               <li>
-                <a href=<%= "#title" + group.id.to_s %> ><%= @contentBlocks.find(group.chunk_id).content %></a>
+                <a href=<%= "#group" + group.id.to_s %> ><%= @contentBlocks.find(group.chunk_id).content %></a>
               </li>
             <% end %>
           <% end %> 
@@ -40,11 +52,11 @@
     <% @groups.each do |group| %>
       <div class="group">
       	<% if @contentBlocks.find(group.chunk_id).contentType.name == "Image" %>
-      		<div class="group_content_image">
+      		<div class="group_content_image"  id=<%= "group" + group.id.to_s %>>
         <% elsif @contentBlocks.find(group.chunk_id).contentType.name == "Title" %>
-        <div class="group_content_title"  id=<%= "title" + group.id.to_s %>>
+        <div class="group_content_title"  id=<%= "group" + group.id.to_s %>>
       	<% else %>
-      		<div class="group_content_text">
+      		<div class="group_content_text"  id=<%= "group" + group.id.to_s %>>
       	<% end %>
           	<%if group.chunk_id != nil %>
             <% if @contentBlocks.find(group.chunk_id).contentType.name == "Image" %>
@@ -96,3 +108,19 @@
     <% end %>
 
 </div>
+
+<script type="text/javascript">
+
+$(".content-container").scroll(function (e) {
+    var elementOnTheTop;
+    $(e.target).children().children().each(function (index, element) {
+        var $element = $(element);
+        var top = $element.position().top;
+        if (top <= 0 && $element.height() > 0) {
+            elementOnTheTop = $element.parent().find("div").attr("id");
+        }
+    });
+    
+    $("#locationTracker").html(elementOnTheTop);
+});
+</script>
