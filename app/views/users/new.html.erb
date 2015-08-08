@@ -1,15 +1,28 @@
+
+    
+<div class='box'>
+</div>
+<div class='content-container'>
+      <div class="group_content_title" style="text-align:center;">
+      <br/><br/><br/><br/><br/>
+      <h2>The Autobiography of</h2>
+      <h1>Dylan Pavelko</h1>
+      <br/><br/><br/><br/>
+    </div>
+    <% @page_title = "UserAuth | Signup" %>
+<div class="group_content_text">
+<div class= "Sign_Form" style="margin-left:35%;">
 <% flash.each do |name, msg| -%>
       <%= content_tag :div, msg, class: name %>
     <% end -%>
-    <% @page_title = "UserAuth | Signup" %>
-<div class="Sign_Form">
+
   <h1>Sign Up</h1>
   <%= form_for(:user, :url => {:controller => 'users', :action => 'create'}) do |f| %>
     <p> Username:</br> <%= f.text_field :username%> </p>
     <p> Email:</br> <%= f.text_field :email%> </p>
     <p> Password:</br> <%= f.password_field :password%></p>
     <p> Password Confirmation:</br> <%= f.password_field :password_confirmation%> </p>
-    <%= f.submit :Signup %>
+    <%= f.submit :Signup %> <%= link_to "Sign In", root_path %> 
   <% end %>
   <% if @user.errors.any? %>
     <ul class="Signup_Errors">
@@ -18,4 +31,10 @@
     <% end %>
     </ul>
   <% end %>
+
 </div>
+</div>
+</div>
+
+
+

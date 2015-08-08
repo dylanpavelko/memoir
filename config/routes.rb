@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get 'sessions/login'
   post 'sessions/login'
-  get 'sessions/home'
+  get 'sessions/home' => "pages#view"
 
   get 'sessions/profile'
 
