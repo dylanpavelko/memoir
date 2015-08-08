@@ -35,4 +35,15 @@ class PagesController < ApplicationController
 	    @characters = GroupHasCharacter.all
 	    @storylines = GroupHasStoryline.all
 	end
+
+	def set_last_group_viewed
+	  @user = @current_user
+      @user.update(:last_group_viewed => params[:last_group_viewed])
+      render :nothing => true
+    end
+
+  def user_params
+    params.require(:user).permit(:username, :email, :firstName, :lastName, :password, :role_id, :password_confirmation, :last_group_viewed)
+  end
+
 end

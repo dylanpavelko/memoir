@@ -52,7 +52,13 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
       @user = User.find(params[:id])
     end
 
+    def set_last_group_viewed
+      @user.update(:last_group_viewed => params[:last_group_viewed]))
+    end
+
+
+
  def user_params
-    params.require(:user).permit(:username, :email, :firstName, :lastName, :password, :role_id, :password_confirmation)
+    params.require(:user).permit(:username, :email, :firstName, :lastName, :password, :role_id, :password_confirmation, :last_group_viewed)
   end
 end

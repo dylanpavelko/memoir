@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150802212959) do
+ActiveRecord::Schema.define(version: 20150808223839) do
 
   create_table "character_tags", force: true do |t|
     t.string   "name"
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(version: 20150802212959) do
     t.string   "firstName"
     t.string   "lastName"
     t.integer  "role_id"
+    t.integer  "last_group_viewed"
   end
 
   add_index "users", ["role_id"], name: "index_users_on_role_id"
