@@ -1,0 +1,41 @@
+<%= form_for(@viewing_preference) do |f| %>
+  <% if @viewing_preference.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@viewing_preference.errors.count, "error") %> prohibited this viewing_preference from being saved:</h2>
+
+      <ul>
+      <% @viewing_preference.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :textDetailLevel %><br>
+    <%= f.number_field :textDetailLevel %>
+  </div>
+  <div class="field">
+    <%= f.label :imageDetailLevel %><br>
+    <%= f.number_field :imageDetailLevel %>
+  </div>
+  <div class="field">
+    <%= f.label :characterTag_id %><br>
+    <%= collection_select(:characterTag_id, :id, CharacterTag.all, :id, :name, :include_blank => true ) %>
+  </div>
+  <div class="field">
+    <%= f.label :storylineTag_id %><br>
+    <%= collection_select(:storylineTag_id, :id, StorylineTag.all, :id, :name,  :include_blank => true ) %>
+  </div>
+  <div class="field">
+    <%= f.label :startDate %><br>
+    <%= f.date_select :startDate, {:include_blank => true, :default => nil, :start_year=>1984, :end_year=>2030} %>
+  </div>
+  <div class="field">
+    <%= f.label :endDate %><br>
+    <%= f.date_select :endDate, {:include_blank => true, :default => nil, :start_year=>1988, :end_year=>2030}  %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  textDetailLevel: 1
+  imageDetailLevel: 1
+  characterTag: 
+  storylineTag: 
+  startDate: 2015-08-08
+  endDate: 2015-08-08
+
+two:
+  textDetailLevel: 1
+  imageDetailLevel: 1
+  characterTag: 
+  storylineTag: 
+  startDate: 2015-08-08
+  endDate: 2015-08-08

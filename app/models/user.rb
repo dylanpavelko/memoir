@@ -46,4 +46,13 @@ class User < ActiveRecord::Base
 		end
 		return false
 	end
+
+	def hasPreference(preference)
+		if ((UserHasViewingPreference.where(:user_id => self.id).count == 0) && preference.id == 1)
+			return true
+		elsif UserHasViewingPreference.where(:user_id => self.id, :viewingPreference_id => preference).count > 0
+			return true
+		end
+		return false
+	end
 end

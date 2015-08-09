@@ -1,8 +1,7 @@
 <% if @current_user != nil %>
 <div id='header-fixed'>
-<strong>Autobiography of Dylan Pavelko</strong>
-<%= link_to 'Home', root_path %>
-<%= link_to 'View Memoir', pages_view_path %> 
+<strong><%= link_to 'Autobiography of Dylan Pavelko', root_path %></strong>
+<%= link_to 'Update Viewing Preferences', view_preferences_path %>
 <% if @current_user.role_id == 1 %>
 | 
 <%= link_to 'Author Tools', pages_tools_path %> 

@@ -9,7 +9,7 @@ class PagesController < ApplicationController
 	def tools
 	end
 
-	def home
+	def viewPreferences
 	 @group = Group.new
 	 @groups = Group.all.sort {|a, b| b.getOrder <=> a.getOrder}
 	 @groups = @groups.sort {|a,b| a.getDatePercision <=> b.getDatePercision}
@@ -25,6 +25,7 @@ class PagesController < ApplicationController
 	def view
 		@groups = Group.all
 		@groups = @groups.select { |group| group.userHasAccess(@current_user) == true }
+		@groups = @groups.select { |group| group.includedInViewingPreference(@current_user) == true }
 		@groups = @groups.sort {|a, b| b.getOrder <=> a.getOrder}
 		@groups = @groups.sort {|a,b| a.getDatePercision <=> b.getDatePercision}
 

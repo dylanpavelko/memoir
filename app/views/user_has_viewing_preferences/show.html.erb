@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_has_viewing_preference.user %>
+</p>
+
+<p>
+  <strong>Viewingpreference:</strong>
+  <%= @user_has_viewing_preference.viewingPreference %>
+</p>
+
+<%= link_to 'Edit', edit_user_has_viewing_preference_path(@user_has_viewing_preference) %> |
+<%= link_to 'Back', user_has_viewing_preferences_path %>

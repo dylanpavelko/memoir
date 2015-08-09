@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :user_has_viewing_preferences
+
+  resources :viewing_preferences
+
   resources :user_has_viewing_privileges
 
   resources :roles
@@ -59,11 +63,11 @@ Rails.application.routes.draw do
   post ':controller(/:action(/:id))(.:format)'
 
   #root :to => "sessions#login"
-
+  get "view_preferences" => "pages#viewPreferences"
   get "/pages/tools" => "pages#tools"
   get "/pages/view" => "pages#view"
-  get "/pages/:page" => "pages#home"
-  root "pages#home", page: "home"
+  get "/pages/:page" => "pages#view"
+  root "pages#view", page: "view"
 
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150808223839) do
+ActiveRecord::Schema.define(version: 20150809040756) do
 
   create_table "character_tags", force: true do |t|
     t.string   "name"
@@ -141,6 +141,16 @@ ActiveRecord::Schema.define(version: 20150808223839) do
     t.datetime "updated_at"
   end
 
+  create_table "user_has_viewing_preferences", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "viewingPreference_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_has_viewing_preferences", ["user_id"], name: "index_user_has_viewing_preferences_on_user_id"
+  add_index "user_has_viewing_preferences", ["viewingPreference_id"], name: "index_user_has_viewing_preferences_on_viewingPreference_id"
+
   create_table "user_has_viewing_privileges", force: true do |t|
     t.integer  "user_id"
     t.integer  "viewingPrivilege_id"
@@ -165,6 +175,17 @@ ActiveRecord::Schema.define(version: 20150808223839) do
   end
 
   add_index "users", ["role_id"], name: "index_users_on_role_id"
+
+  create_table "viewing_preferences", force: true do |t|
+    t.integer  "textDetailLevel"
+    t.integer  "imageDetailLevel"
+    t.integer  "characterTag_id"
+    t.integer  "storylineTag_id"
+    t.date     "startDate"
+    t.date     "endDate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "viewing_privileges", force: true do |t|
     t.string   "name"

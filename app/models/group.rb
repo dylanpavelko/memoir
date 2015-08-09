@@ -121,4 +121,16 @@ class Group < ActiveRecord::Base
     end
   end
 
+
+
+    def includedInViewingPreference(current_user)
+    @viewPrivileges = ViewingPreference.all
+    @viewPrivileges.each do |viewing_preference|
+      if viewing_preference.includes(self) && current_user.hasPreference(viewing_preference)
+          return true
+      end
+    end
+    return false
+  end
+
 end

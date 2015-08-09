@@ -1,0 +1,27 @@
+<h1>Listing user_has_viewing_preferences</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Viewingpreference</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_has_viewing_preferences.each do |user_has_viewing_preference| %>
+      <tr>
+        <td><%= user_has_viewing_preference.user %></td>
+        <td><%= user_has_viewing_preference.viewingPreference %></td>
+        <td><%= link_to 'Show', user_has_viewing_preference %></td>
+        <td><%= link_to 'Edit', edit_user_has_viewing_preference_path(user_has_viewing_preference) %></td>
+        <td><%= link_to 'Destroy', user_has_viewing_preference, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User has viewing preference', new_user_has_viewing_preference_path %>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Textdetaillevel:</strong>
+  <%= @viewing_preference.textDetailLevel %>
+</p>
+
+<p>
+  <strong>Imagedetaillevel:</strong>
+  <%= @viewing_preference.imageDetailLevel %>
+</p>
+
+<p>
+  <strong>Charactertag:</strong>
+  <%= @viewing_preference.characterTag_id %>
+</p>
+
+<p>
+  <strong>Storylinetag:</strong>
+  <%= @viewing_preference.storylineTag_id %>
+</p>
+
+<p>
+  <strong>Startdate:</strong>
+  <%= @viewing_preference.startDate %>
+</p>
+
+<p>
+  <strong>Enddate:</strong>
+  <%= @viewing_preference.endDate %>
+</p>
+
+<%= link_to 'Edit', edit_viewing_preference_path(@viewing_preference) %> |
+<%= link_to 'Back', viewing_preferences_path %>

@@ -8,17 +8,54 @@
   <script>
   
   $(function() {
-    $( "#slider" ).slider({
+    $( "#slider-text" ).slider({
       value:1,
       min: 0,
       max: 2,
       step: 1,
       slide: function( event, ui ) {
-        $( "#amount2" ).val( "$" + ui.value );
+        $( "#amount2" ).val( getTextDetail(ui.value) );
       }
     });
-    $( "#amount2" ).val( "$" + $( "#slider" ).slider( "value" ) );
+    $( "#amount2" ).val( getTextDetail($( "#slider-text" ).slider( "value" )) );
   });
+
+function getTextDetail(value){
+  if(value == 0){
+        display = "Summaries Only";
+      }else if(value == 2){
+        display = "More Stories";
+      }else{
+        display = "Normal";
+      }
+      return display;
+}
+
+    $(function() {
+    $( "#slider-images" ).slider({
+      value:2,
+      min: 0,
+      max: 3,
+      step: 1,
+      slide: function( event, ui ) {
+        $( "#amount3" ).val( getImageDetail(ui.value) );
+      }
+    });
+    $( "#amount3" ).val( getImageDetail($( "#slider-images" ).slider( "value" )) );
+  });
+
+    function getImageDetail(value){
+  if(value == 0){
+        display = "None";
+      }else if(value == 1){
+        display = "A Few";
+      }else if(value == 3){
+        display = "Lots";
+      }else{
+        display = "Normal";
+      }
+      return display;
+}
 
     $(function() {
       $( "#slider-range" ).slider({
@@ -59,6 +96,13 @@
 
   </script>
 
+
+
+    
+<div class='box'>
+
+
+
 <%= form_for(@group) do |f| %>
   <% if @group.errors.any? %>
     <div id="error_explanation">
@@ -74,17 +118,12 @@
   </div>
 
 
-<h1>Memoir</h1>
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-IMAGE COLALGE
-<br/><br/><br/><br/><br/>
-
+<div class='content-container'>
+<div class="group_content_text">
+  <br/>
+  <br/>
+  <h3>Adjust your viewing preferences</h3>
+  <br/>
   <div class="field">
     <label for="amount">Time Frame:</label>
     <input type="text" id="amount" size="60" readonly style="border:0; font-weight:bold;"> 
@@ -92,25 +131,34 @@ IMAGE COLALGE
     <br/>
   </div>
   <div class="field">
-  <label for="amount2">Detail Level:</label>
+  <label for="amount2">Narrative Detail:</label>
   <input type="text" id="amount2" readonly style="border:0; font-weight:bold;">
-  <div id="slider" style="width:80%;"></div>
+  <div id="slider-text" style="width:80%;"></div>
+  <br/>
+  </div>
+  <div class="field">
+  <label for="amount3">Images:</label>
+  <input type="text" id="amount3" readonly style="border:0; font-weight:bold;">
+  <div id="slider-images" style="width:80%;"></div>
   </div>
 
-
+  <!-- Story Tags -->
   <div class="field">
-    <%= f.label :storylineTag_id, "Storylines" %><br>
-     <%= collection_check_boxes(:storylineTags, :ids, StorylineTag.all, :id, :name, {}, {:multiple => true}) %>
+    <%#= f.label :storylineTag_id, "Storylines" %><br>
+     <%#= collection_check_boxes(:storylineTags, :ids, StorylineTag.all, :id, :name, {}, {:multiple => true}) %>
   </div>
   <!-- Character Tags -->
   <div class="field">
-    <%= f.label :characterTags %><br>
-    <%= collection_check_boxes(:characterTags, :ids, CharacterTag.all, :id, :name, {}, {:multiple => true}) %>
+    <%#= f.label :characterTags %><br>
+    <%#= collection_check_boxes(:characterTags, :ids, CharacterTag.all, :id, :name, {}, {:multiple => true}) %>
   </div>
 
 
   <div class="actions">
-    <%= link_to 'View Memoir', pages_view_path %>
-    <%= f.submit %>
+    <%= button_to "Update Viewing Preferences", action: "new" %>
   </div>
   <% end %>
+
+</div>
+</div>
+  </div>
