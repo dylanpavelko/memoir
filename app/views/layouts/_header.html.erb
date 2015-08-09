@@ -1,6 +1,6 @@
 <% if @current_user != nil %>
 <div id='header-fixed'>
-<strong><%= link_to 'Autobiography of Dylan Pavelko', root_path %></strong>
+<strong><%= link_to 'Autobiography of Dylan Pavelko', sessions_home_path %></strong>
 <%= link_to 'Update Viewing Preferences', view_preferences_path %>
 <% if @current_user.role_id == 1 %>
 | 
