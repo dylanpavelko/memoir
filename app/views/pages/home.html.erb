@@ -1,9 +1,12 @@
 <head>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+
+</head>
   <script>
+  
   $(function() {
     $( "#slider" ).slider({
       value:1,
@@ -55,8 +58,6 @@
     }
 
   </script>
-</head>
-
 
 <%= form_for(@group) do |f| %>
   <% if @group.errors.any? %>
