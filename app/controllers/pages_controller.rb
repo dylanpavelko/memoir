@@ -15,11 +15,13 @@ class PagesController < ApplicationController
 	 @groups = @groups.sort {|a,b| a.getDatePercision <=> b.getDatePercision}
 
 
-    @contentBlocks = ContentBlock.all
-    @characterTags = CharacterTag.all
-    @storylineTags = StorylineTag.all
-    @characters = GroupHasCharacter.all
-    @storylines = GroupHasStoryline.all
+	    @contentBlocks = ContentBlock.all
+	    @characterTags = CharacterTag.all
+	    @storylineTags = StorylineTag.all
+	    @characters = GroupHasCharacter.all
+	    @storylines = GroupHasStoryline.all
+
+	    @viewing_preference = ViewingPreference.new
 	end
 
 	def view
@@ -43,8 +45,33 @@ class PagesController < ApplicationController
       render :nothing => true
     end
 
+    def set_user_view_preferences
+    	@user = @current_user
+    	@startYear = params[:viewing_preference][:startDate]
+    	@endYear = params[:viewing_preference][:endDate]
+    	@start = Date.new(@startYear.to_i,1,1)
+    	@end = Date.new(@endYear.to_i,1,1)
+    	@imageDetails = params[:viewing_preference][:imageDetail]
+    	@textDetails = params[:viewing_preference][:textDetail]
+
+		@userViewingPreferences = UserHasViewingPreference.where(:user_id => @current_user)
+    	if @userViewingPreferences.count > 0
+    		@viewingPreference = ViewingPreference.where(:id => @userViewingPreferences.first.viewingPreference_id).first
+    		@viewingPreference = @viewingPreference.update_attributes(:startDate => @start, :endDate => @end , :textDetailLevel => @textDetails,:imageDetailLevel => @imageDetails)
+    		#update
+    	else
+    		#add a viewing viewing_preference 
+    		@viewingPreference = ViewingPreference.new(:startDate => @start, :endDate => @end , :textDetailLevel => @textDetails,:imageDetailLevel => @imageDetails)
+    		@viewingPreference.save
+    		@userViewingPreference = UserHasViewingPreference.new(:user_id => @current_user.id, :viewingPreference_id => @viewingPreference.id)
+    		@userViewingPreference.save
+    		#link it to the user
+    	end
+    	redirect_to(:action => 'view')
+    end
+
   def user_params
-    params.require(:user).permit(:username, :email, :firstName, :lastName, :password, :role_id, :password_confirmation, :last_group_viewed)
+    params.require(:user).permit(:username, :email, :firstName, :lastName, :password, :role_id, :password_confirmation, :last_group_viewed, :viewing_preference)
   end
 
 end

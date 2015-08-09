@@ -1,8 +1,7 @@
 <head>
 
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+  
+
 
 </head>
   <script>
@@ -15,9 +14,11 @@
       step: 1,
       slide: function( event, ui ) {
         $( "#amount2" ).val( getTextDetail(ui.value) );
+        $( "#viewing_preference_textDetailLevel" ).val( ui.value );
       }
     });
     $( "#amount2" ).val( getTextDetail($( "#slider-text" ).slider( "value" )) );
+    $( "#viewing_preference_textDetailLevel" ).val( $( "#slider-text" ).slider( "value" ) );
   });
 
 function getTextDetail(value){
@@ -39,9 +40,11 @@ function getTextDetail(value){
       step: 1,
       slide: function( event, ui ) {
         $( "#amount3" ).val( getImageDetail(ui.value) );
+        $( "#viewing_preference_imageDetailLevel" ).val( ui.value );
       }
     });
     $( "#amount3" ).val( getImageDetail($( "#slider-images" ).slider( "value" )) );
+    $( "#viewing_preference_imageDetailLevel" ).val( $( "#slider-images" ).slider( "value" ) );
   });
 
     function getImageDetail(value){
@@ -57,18 +60,26 @@ function getTextDetail(value){
       return display;
 }
 
+
+    var baseStart = 1989;
+    var baseEnd = getCurrentYear();
     $(function() {
       $( "#slider-range" ).slider({
         range: true,
         min: 1984,
-        max: getCurrentYear(),
-        values: [ 1989, 2015 ],
+        max: baseEnd,
+        values: [ baseStart, baseEnd ],
         slide: function( event, ui ) {
           $( "#amount" ).val( getDate(ui.values[ 0 ]) + " to " + getDate(ui.values[ 1 ]) );
+          $( "#viewing_preference_startDate" ).val( ui.values[ 0 ] );
+          $( "#viewing_preference_endDate" ).val( ui.values[ 1 ] );
+
         }
       });
 
       $( "#amount" ).val( getDate($( "#slider-range" ).slider( "values", 0 )) + " to " + getDate($( "#slider-range" ).slider( "values", 1 )) );
+      $( "#viewing_preference_startDate" ).val(baseStart);
+      $( "#viewing_preference_endDate" ).val(baseEnd);
     });
 
     function getDate(value) {
@@ -103,19 +114,6 @@ function getTextDetail(value){
 
 
 
-<%= form_for(@group) do |f| %>
-  <% if @group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
-
-      <ul>
-      <% @group.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  </div>
 
 
 <div class='content-container'>
@@ -124,40 +122,78 @@ function getTextDetail(value){
   <br/>
   <h3>Adjust your viewing preferences</h3>
   <br/>
-  <div class="field">
-    <label for="amount">Time Frame:</label>
-    <input type="text" id="amount" size="60" readonly style="border:0; font-weight:bold;"> 
-    <div id="slider-range" style="width:80%;"></div>
-    <br/>
-  </div>
-  <div class="field">
-  <label for="amount2">Narrative Detail:</label>
-  <input type="text" id="amount2" readonly style="border:0; font-weight:bold;">
-  <div id="slider-text" style="width:80%;"></div>
-  <br/>
-  </div>
-  <div class="field">
-  <label for="amount3">Images:</label>
-  <input type="text" id="amount3" readonly style="border:0; font-weight:bold;">
-  <div id="slider-images" style="width:80%;"></div>
-  </div>
+
+
 
   <!-- Story Tags -->
-  <div class="field">
+<!--   <div class="field">
     <%#= f.label :storylineTag_id, "Storylines" %><br>
      <%#= collection_check_boxes(:storylineTags, :ids, StorylineTag.all, :id, :name, {}, {:multiple => true}) %>
-  </div>
+  </div> -->
   <!-- Character Tags -->
-  <div class="field">
+<!--   <div class="field">
     <%#= f.label :characterTags %><br>
     <%#= collection_check_boxes(:characterTags, :ids, CharacterTag.all, :id, :name, {}, {:multiple => true}) %>
-  </div>
+  </div> -->
 
 
   <div class="actions">
-    <%= button_to "Update Viewing Preferences", action: "new" %>
+    <%= submit_tag "Submit" %>
+    <%#= button_to "Update Viewing Preferences", :action => :set_user_view_preferences, :startDate => "1423", :endDate => "123", :textDetail => "1", :imageDetail => "2" %>
   </div>
+
+  <%= form_for @viewing_preference, :url => url_for(:controller => 'pages', :action => 'set_user_view_preferences') do |f| %>
+  <% if @viewing_preference.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@viewing_preference.errors.count, "error") %> prohibited this viewing_preference from being saved:</h2>
+
+      <ul>
+      <% @viewing_preference.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
   <% end %>
+
+<!--   <div class="field">
+    <%#= f.label :characterTag_id %><br>
+    <%#= collection_select(:characterTag_id, :id, CharacterTag.all, :id, :name, :include_blank => true ) %>
+  </div>
+  <div class="field">
+    <%#= f.label :storylineTag_id %><br>
+    <%#= collection_select(:storylineTag_id, :id, StorylineTag.all, :id, :name,  :include_blank => true ) %>
+  </div> -->
+
+  <!-- Time Frame -->
+  <div class="field">
+    <%= f.hidden_field :startDate %>
+    <%= f.hidden_field :endDate %>
+    <label for="amount">Time Frame:</label>
+    <input type="text" id="amount" size="60" readonly style="border:0; font-weight:bold;"> 
+    <div id="slider-range" style="width:80%;"></div>
+  </div>
+
+  <div class="field">
+      <label for="amount2">Narrative Detail:</label>
+      <%= f.hidden_field :textDetailLevel %>
+  <input type="text" id="amount2" readonly style="border:0; font-weight:bold;">
+  <input type="hidden" id="textDetail" readonly> 
+  <div id="slider-text" style="width:80%;"></div>
+  </div>
+
+  <!-- Image Detail Level -->
+  <div class="field">
+    <%= f.hidden_field :imageDetailLevel %>
+    <label for="amount3">Images:</label>
+    <input type="text" id="amount3" readonly style="border:0; font-weight:bold;">
+    <input type="hidden" id="imageDetail" readonly> 
+    <div id="slider-images" style="width:80%;"></div>
+ </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
 
 </div>
 </div>
