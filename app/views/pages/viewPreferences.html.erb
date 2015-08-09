@@ -61,12 +61,12 @@ function getTextDetail(value){
 }
 
 
-    var baseStart =   <% if @existing_viewing_preference.startDate != nil %>
+    var baseStart =   <% if @existing_viewing_preference != nil %>
                           <%=  @existing_viewing_preference.startDate.strftime("%Y") %>
                       <% else %>
                           <%= "1989" %>
                       <% end %>;
-    var baseEnd = <% if @existing_viewing_preference.startDate != nil %>
+    var baseEnd = <% if @existing_viewing_preference != nil %>
                           <%=  @existing_viewing_preference.endDate.strftime("%Y") %>
                       <% else %>
                           <%= "getCurrentYear()" %>
