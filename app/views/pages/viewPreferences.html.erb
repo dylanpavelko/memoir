@@ -61,13 +61,21 @@ function getTextDetail(value){
 }
 
 
-    var baseStart = 1989;
-    var baseEnd = getCurrentYear();
+    var baseStart =   <% if @existing_viewing_preference.startDate != nil %>
+                          <%=  @existing_viewing_preference.startDate.strftime("%Y") %>
+                      <% else %>
+                          <%= "1989" %>
+                      <% end %>;
+    var baseEnd = <% if @existing_viewing_preference.startDate != nil %>
+                          <%=  @existing_viewing_preference.endDate.strftime("%Y") %>
+                      <% else %>
+                          <%= "getCurrentYear()" %>
+                      <% end %>;
     $(function() {
       $( "#slider-range" ).slider({
         range: true,
         min: 1984,
-        max: baseEnd,
+        max: getCurrentYear(),
         values: [ baseStart, baseEnd ],
         slide: function( event, ui ) {
           $( "#amount" ).val( getDate(ui.values[ 0 ]) + " to " + getDate(ui.values[ 1 ]) );
@@ -136,11 +144,6 @@ function getTextDetail(value){
     <%#= collection_check_boxes(:characterTags, :ids, CharacterTag.all, :id, :name, {}, {:multiple => true}) %>
   </div> -->
 
-
-  <div class="actions">
-    <%= submit_tag "Submit" %>
-    <%#= button_to "Update Viewing Preferences", :action => :set_user_view_preferences, :startDate => "1423", :endDate => "123", :textDetail => "1", :imageDetail => "2" %>
-  </div>
 
   <%= form_for @viewing_preference, :url => url_for(:controller => 'pages', :action => 'set_user_view_preferences') do |f| %>
   <% if @viewing_preference.errors.any? %>

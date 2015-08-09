@@ -21,7 +21,13 @@ class PagesController < ApplicationController
 	    @characters = GroupHasCharacter.all
 	    @storylines = GroupHasStoryline.all
 
-	    @viewing_preference = ViewingPreference.new
+	    @userViewingPreferences = UserHasViewingPreference.where(:user_id => @current_user)
+    	if @userViewingPreferences.count > 0
+    		@existing_viewing_preference = ViewingPreference.where(:id => @userViewingPreferences.first.viewingPreference_id).first
+    		@viewing_preference = ViewingPreference.new
+    	else
+		    @viewing_preference = ViewingPreference.new
+		end
 	end
 
 	def view
