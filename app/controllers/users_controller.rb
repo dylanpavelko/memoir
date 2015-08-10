@@ -47,6 +47,14 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
     end
   end
 
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
