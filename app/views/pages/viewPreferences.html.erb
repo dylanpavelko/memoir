@@ -173,7 +173,7 @@ function getTextDetail(value){
     <%= f.hidden_field :endDate %>
     <label for="amount">Time Frame:</label>
     <input type="text" id="amount" size="60" readonly style="border:0; font-weight:bold;"> 
-    <div id="slider-range" style="width:80%;"></div>
+    <div id="slider-range"></div>
   </div>
 
   <div class="field">
@@ -181,7 +181,7 @@ function getTextDetail(value){
       <%= f.hidden_field :textDetailLevel %>
   <input type="text" id="amount2" readonly style="border:0; font-weight:bold;">
   <input type="hidden" id="textDetail" readonly> 
-  <div id="slider-text" style="width:80%;"></div>
+  <div id="slider-text"></div>
   </div>
 
   <!-- Image Detail Level -->
@@ -190,10 +190,10 @@ function getTextDetail(value){
     <label for="amount3">Images:</label>
     <input type="text" id="amount3" readonly style="border:0; font-weight:bold;">
     <input type="hidden" id="imageDetail" readonly> 
-    <div id="slider-images" style="width:80%;"></div>
+    <div id="slider-images"></div>
  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update Viewing Preferences"%>
   </div>
 <% end %>
 

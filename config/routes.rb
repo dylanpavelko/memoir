@@ -67,7 +67,7 @@ Rails.application.routes.draw do
   get "/pages/tools" => "pages#tools"
   get "/pages/view" => "pages#view"
   get "/pages/:page" => "pages#view"
-  root "pages#view", page: "view"
+  root "pages#view", pages: "view"
 
 
 
