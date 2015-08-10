@@ -19,8 +19,8 @@ before_filter :author_only, only: [:index, :show, :update, :destroy]
 
 
   def create
-    @user = User.new(user_params, :role_id => 2)
-    if @user.save
+    @user = User.new(user_params)
+    if @user.update_attribute(:role_id, 2)
       session[:user_id] = @user.id
       redirect_to(root_path)
     else
