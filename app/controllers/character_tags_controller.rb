@@ -1,6 +1,7 @@
 class CharacterTagsController < ApplicationController
   before_action :set_character_tag, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user
+  before_filter :author_only
 
   # GET /character_tags
   # GET /character_tags.json

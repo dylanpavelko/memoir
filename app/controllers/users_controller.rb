@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 before_filter :save_login_state, :only => [:new, :create]
 before_filter :authenticate_user, :only => [:edit, :index]
 before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_filter :author_only
   
 
   def index
@@ -53,12 +54,12 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
     end
 
     def set_last_group_viewed
-      @user.update(:last_group_viewed => params[:last_group_viewed]))
+      @user.update(:last_group_viewed => params[:last_group_viewed])
     end
 
 
 
  def user_params
-    params.require(:user).permit(:username, :email, :firstName, :lastName, :password, :role_id, :password_confirmation, :last_group_viewed)
+    params.require(:user).permit(:username, :email, :firstName, :lastName, :password, :role_id, :password_confirmation)
   end
 end

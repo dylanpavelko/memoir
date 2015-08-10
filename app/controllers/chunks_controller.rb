@@ -1,6 +1,7 @@
 class ChunksController < ApplicationController
   before_action :set_chunk, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user
+  before_filter :author_only
 
   # GET /chunks
   # GET /chunks.json

@@ -1,6 +1,7 @@
 class ViewingPreferencesController < ApplicationController
   before_action :set_viewing_preference, only: [:show, :edit, :update, :destroy]
     before_filter :authenticate_user
+      before_filter :author_only
 
   # GET /viewing_preferences
   # GET /viewing_preferences.json

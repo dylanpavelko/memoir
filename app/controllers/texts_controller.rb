@@ -1,6 +1,7 @@
 class TextsController < ApplicationController
   before_action :set_text, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user
+    before_filter :author_only
 
   # GET /texts
   # GET /texts.json

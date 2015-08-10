@@ -1,6 +1,7 @@
 class RelationshipTypesController < ApplicationController
   before_action :set_relationship_type, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user
+  before_filter :author_only
 
   # GET /relationship_types
   # GET /relationship_types.json
