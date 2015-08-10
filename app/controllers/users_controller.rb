@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 before_filter :save_login_state, :only => [:new, :create]
 before_filter :authenticate_user, :only => [:edit, :index]
 before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_filter :author_only
+before_filter :author_only, only: [:index, :show, :update, :destroy]
   
 
   def index
@@ -19,15 +19,16 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params, :role_id => 2)
     if @user.save
-      format.html { redirect_to users_path, notice: 'Viewing privilege was successfully updated.' }
-      format.json { render :show, status: :ok, location: @user }
+      session[:user_id] = @user.id
+      redirect_to(root_path)
     else
       flash[:notice] = "Form is invalid"
       flash[:color]= "invalid"
+      render "new"
     end
-    render "new"
+
   end
 
   def show
