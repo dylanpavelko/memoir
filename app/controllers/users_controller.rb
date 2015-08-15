@@ -1,7 +1,7 @@
 class UsersController < ApplicationController  
 before_filter :save_login_state, :only => [:new, :create]
-before_filter :authenticate_user, :only => [:edit, :index]
-before_action :set_user, only: [:show, :edit, :update, :destroy]
+before_filter :authenticate_user, :only => [:edit, :index, :show]
+before_action :set_user, only: [:edit, :update, :destroy]
 before_filter :author_only, only: [:index, :show, :update, :destroy]
   
 
