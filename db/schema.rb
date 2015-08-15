@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150809040756) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "character_tags", force: true do |t|
     t.string   "name"
     t.string   "relationship"
@@ -26,7 +23,7 @@ ActiveRecord::Schema.define(version: 20150809040756) do
     t.string   "image_url"
   end
 
-  add_index "character_tags", ["relationshipType_id"], name: "index_character_tags_on_relationshipType_id", using: :btree
+  add_index "character_tags", ["relationshipType_id"], name: "index_character_tags_on_relationshipType_id"
 
   create_table "chunks", force: true do |t|
     t.integer  "style_id"
@@ -34,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150809040756) do
     t.datetime "updated_at"
   end
 
-  add_index "chunks", ["style_id"], name: "index_chunks_on_style_id", using: :btree
+  add_index "chunks", ["style_id"], name: "index_chunks_on_style_id"
 
   create_table "content_blocks", force: true do |t|
     t.integer  "contentType_id"
@@ -44,8 +41,8 @@ ActiveRecord::Schema.define(version: 20150809040756) do
     t.datetime "updated_at"
   end
 
-  add_index "content_blocks", ["contentType_id"], name: "index_content_blocks_on_contentType_id", using: :btree
-  add_index "content_blocks", ["style_id"], name: "index_content_blocks_on_style_id", using: :btree
+  add_index "content_blocks", ["contentType_id"], name: "index_content_blocks_on_contentType_id"
+  add_index "content_blocks", ["style_id"], name: "index_content_blocks_on_style_id"
 
   create_table "content_types", force: true do |t|
     t.string   "name"
@@ -95,12 +92,12 @@ ActiveRecord::Schema.define(version: 20150809040756) do
     t.datetime "updated_at"
   end
 
-  add_index "groups", ["characterTag_id"], name: "index_groups_on_characterTag_id", using: :btree
-  add_index "groups", ["chunk_id"], name: "index_groups_on_chunk_id", using: :btree
-  add_index "groups", ["detailLevel_id"], name: "index_groups_on_detailLevel_id", using: :btree
-  add_index "groups", ["era_id"], name: "index_groups_on_era_id", using: :btree
-  add_index "groups", ["parentGroup_id"], name: "index_groups_on_parentGroup_id", using: :btree
-  add_index "groups", ["storylineTag_id"], name: "index_groups_on_storylineTag_id", using: :btree
+  add_index "groups", ["characterTag_id"], name: "index_groups_on_characterTag_id"
+  add_index "groups", ["chunk_id"], name: "index_groups_on_chunk_id"
+  add_index "groups", ["detailLevel_id"], name: "index_groups_on_detailLevel_id"
+  add_index "groups", ["era_id"], name: "index_groups_on_era_id"
+  add_index "groups", ["parentGroup_id"], name: "index_groups_on_parentGroup_id"
+  add_index "groups", ["storylineTag_id"], name: "index_groups_on_storylineTag_id"
 
   create_table "images", force: true do |t|
     t.string   "src"
@@ -151,8 +148,8 @@ ActiveRecord::Schema.define(version: 20150809040756) do
     t.datetime "updated_at"
   end
 
-  add_index "user_has_viewing_preferences", ["user_id"], name: "index_user_has_viewing_preferences_on_user_id", using: :btree
-  add_index "user_has_viewing_preferences", ["viewingPreference_id"], name: "index_user_has_viewing_preferences_on_viewingPreference_id", using: :btree
+  add_index "user_has_viewing_preferences", ["user_id"], name: "index_user_has_viewing_preferences_on_user_id"
+  add_index "user_has_viewing_preferences", ["viewingPreference_id"], name: "index_user_has_viewing_preferences_on_viewingPreference_id"
 
   create_table "user_has_viewing_privileges", force: true do |t|
     t.integer  "user_id"
@@ -161,8 +158,8 @@ ActiveRecord::Schema.define(version: 20150809040756) do
     t.datetime "updated_at"
   end
 
-  add_index "user_has_viewing_privileges", ["user_id"], name: "index_user_has_viewing_privileges_on_user_id", using: :btree
-  add_index "user_has_viewing_privileges", ["viewingPrivilege_id"], name: "index_user_has_viewing_privileges_on_viewingPrivilege_id", using: :btree
+  add_index "user_has_viewing_privileges", ["user_id"], name: "index_user_has_viewing_privileges_on_user_id"
+  add_index "user_has_viewing_privileges", ["viewingPrivilege_id"], name: "index_user_has_viewing_privileges_on_viewingPrivilege_id"
 
   create_table "users", force: true do |t|
     t.string   "username"
@@ -177,7 +174,7 @@ ActiveRecord::Schema.define(version: 20150809040756) do
     t.integer  "last_group_viewed"
   end
 
-  add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
+  add_index "users", ["role_id"], name: "index_users_on_role_id"
 
   create_table "viewing_preferences", force: true do |t|
     t.integer  "textDetailLevel"
